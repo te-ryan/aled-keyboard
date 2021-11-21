@@ -28,7 +28,7 @@ chmod +x xlib-install.sh
 pip3 install python3-xlib
 ```
 
-### Mo Ubuntu, Debian, Linux Mint
+### No Ubuntu, Debian, Linux Mint
 ```sh
 sudo apt-get install python-pip
 ```
@@ -44,7 +44,7 @@ python3 aled-keyboard.py
 ```
 
 # Criando animações personalizadas
-Para criar uma animação personalizada, primeiro criar um arquivo com o nome da animação em **animations/**.
+Para criar uma animação personalizada, primeiro crie um arquivo com o nome da animação em [**animations/**](animations).
 
 ## Função LED
 A função LED pode desligar e ligar a LED
