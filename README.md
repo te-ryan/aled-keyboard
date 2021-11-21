@@ -1,5 +1,7 @@
 # Aled Keyboard
 
+**Essa versão é compativél apenas com sistemas GNU/Linux**
+
 Aled Keyboard é um software criado com Python 3. O objetivo dessa script é produzir animações com as leds do teclado.
 Dependendo do hardware do seu teclado, pode causar danos, como por exemplo, queimar as leds. Não nós responsabilizamos, caso isso aconteça.
 
