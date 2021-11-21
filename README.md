@@ -62,4 +62,4 @@ Obs: para selecionar uma animação personalizada, use a opção **4**.
 
 # License
 
-[License MIT](LICENSE.md)
+[License MIT](LICENSE)
