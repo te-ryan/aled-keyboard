@@ -1,0 +1,4 @@
+# Arquivo de configurações para ALED-KEYBOARD.PY
+ON=xset led on
+OFF=xset led off
+LOG=TRUE
