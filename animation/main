@@ -1,1 +1,54 @@
+# LED <ON/OFF>
+#   Desligar ou acender as led do teclado
+#   Exemplo: LED ON
+#            LED OFF
 
+# SLEEP <SEGUNDOS>
+#   Esperar por um determinado tempo
+#   Exemplo: SLEEP 2.5
+
+# !LOOP
+#   Repetir a animação
+
+LED ON
+SLEEP 0.2
+LED OFF
+SLEEP 0.2
+LED ON
+SLEEP 0.2
+LED OFF
+SLEEP 0.2
+LED ON
+SLEEP 0.2
+LED OFF
+SLEEP 0.2
+LED ON
+SLEEP 0.2
+LED OFF
+SLEEP 0.2
+LED ON
+SLEEP 0.2
+LED OFF
+SLEEP 0.2
+LED ON
+SLEEP 0.2
+LED OFF
+SLEEP 0.2
+LED ON
+SLEEP 0.2
+
+LED OFF
+
+SLEEP 2
+LED ON
+
+SLEEP 2
+LED OFF
+
+SLEEP 1
+LED ON
+
+SLEEP 0.5
+LED OFF
+
+!LOOP
