@@ -40,9 +40,12 @@ def OnKeyPress(event):
     global anim
     if atalho:
         tecla_de_atalho = event.Key
-        print(f'\nAtalho definido: {tecla_de_atalho}')
+        print_message(f'\nAtalho definido: {tecla_de_atalho}')
         atalho = False
-        print(f'\n\n\nPronto! Basta apertar "{tecla_de_atalho}" para parar o programa.')
+        print_message(f"""
+            Pronto! Basta apertar "{tecla_de_atalho}" para parar o programa.
+            ------------------------- ALED KEYBOARD 2.0 --------------------
+        """)
         return
     if event.Key == tecla_de_atalho:
         stop = True
@@ -55,7 +58,7 @@ def OnKeyPress(event):
             os.system(xset_on)
             led = True
     if log:
-        print(f'Tecla pressionada: {event.Key}')
+        print_message(f'Tecla pressionada: {event.Key}')
 
 def a_set():
     global atalho
@@ -69,7 +72,7 @@ def a_set():
         hm.KeyUp = OnKeyPress
     hm.HookKeyboard()
     hm.start()
-    print('Digite a tecla de atalho para parar o programa: ')
+    print_message('Digite a tecla de atalho para parar o programa: ')
     atalho = True
 
 def run_animation(animation_content):
@@ -78,14 +81,20 @@ def run_animation(animation_content):
         if action.replace(' ', '').startswith('#'): continue
         action = action.lower().replace('\n', '').split(' ')
         if action[0] == 'sleep':
-            if log: print(f'SLEEP {action[1]}')
+            if log: print_message(f'SLEEP {action[1]}')
             time.sleep(float(action[1]))
         elif action[0] == 'led':
-            if log: print(f'LED {action[1]}')
+            if log: print_message(f'LED {action[1]}')
             if action[1] == 'on': os.system(xset_on)
             elif action[1] == 'off': os.system(xset_off)
         elif action[0] == '!loop':
             run_animation(animation_content)
+
+def print_message(message):
+    print(f'\033[1;35m', end='')
+    for l in message:
+        print(l, end='')
+    print('\033[0;0m')
 
 def main():
     global atalho
@@ -102,7 +111,7 @@ def main():
     try:
         CONFIG = open('config', 'r')
     except FileNotFoundError:
-        print('O arquivo de configurações não foi encontrado.')
+        print_message('O arquivo de configurações não foi encontrado.')
         return
     for line in CONFIG.readlines():
         if line.replace(' ', '').startswith('#'): continue
@@ -118,9 +127,10 @@ def main():
         xset_on
         xset_off
     except NameError:
-        print('Ocorreu um erro de configuração. Certifique-se de que o arquivo "config" esteja correto.')
+        print_message('Ocorreu um erro de configuração. Certifique-se de que o arquivo "config" esteja correto.')
         return
-    print("""
+    print_message("""
+                        ALED KEYBOARD 2.0
     ***************************************************************
     Tipos de animações:
         1) Quando um tecla for pressionada.
@@ -133,20 +143,20 @@ def main():
     try:
         int(anim)
     except ValueError:
-        print('Opção invalida. Escolha entre uma das opções acima.')
+        print_message('Opção invalida. Escolha entre uma das opções acima.')
         return
     anim = int(anim)
     if anim > 5 or anim < 1:
-        print('Opção invalida. Escolha entre uma das opções acima.')
+        print_message('Opção invalida. Escolha entre uma das opções acima.')
         return
     led = True
     os.system(xset_on)
-    print('AVISO: Caso as led do seu teclado acederam, isso significa que está funcionando corretamente. Não nos responsabilizamos por qualquer dano causado no seu hardware.')
-    print('Aperte Enter para continuar ou CTRL + C para sair.')
+    print_message('AVISO: Caso as led do seu teclado acederam, isso significa que está funcionando corretamente. Não nos responsabilizamos por qualquer dano causado no seu hardware.')
+    print_message('Aperte Enter para continuar ou CTRL + C para sair.')
     input()
-    print(f'Animação selecionada: {str(anim)}')
+    print_message(f'Animação selecionada: {str(anim)}')
     if anim == 1:
-        print("""
+        print_message("""
         **********************************
         Deseja executar essa ação quando?
             1) OnKeyDown
@@ -158,11 +168,11 @@ def main():
         try:
             int(qe)
         except ValueError:
-            print('Opção invalida. Escolha entre uma das opções acima.')
+            print_message('Opção invalida. Escolha entre uma das opções acima.')
             return
         qe = int(qe)
         if qe > 3 or qe < 1:
-            print('Opção invalida. Escolha entre uma das opções acima.')
+            print_message('Opção invalida. Escolha entre uma das opções acima.')
             return
         if qe == 1: _onkeydown = True
         elif qe == 2: _onkeyup = True
@@ -170,7 +180,7 @@ def main():
         a_set()
     elif anim == 2:
         _onkeydown = True
-        print('Selecione o invervalo ( segundos )')
+        print_message('Selecione o invervalo ( segundos )')
         i = float(input(' => '))
         a_set()
         while not stop:
@@ -183,9 +193,9 @@ def main():
             time.sleep(i)
     elif anim == 3:
         _onkeydown = True
-        print('Tempo min (segundos)')
+        print_message('Tempo min (segundos)')
         min = float(input(' => '))
-        print('Tempo max (segundos)')
+        print_message('Tempo max (segundos)')
         max = float(input(' => '))
         a_set()
         while not stop:
@@ -198,24 +208,24 @@ def main():
             time.sleep(random.uniform(min, max))
     elif anim == 4:
         animations = os.listdir('animations')
-        print('    ***************************************************************')
-        print('    Selecione uma animação: ')
+        print_message('    ***************************************************************')
+        print_message('    Selecione uma animação: ')
         count = 1
         if len(animations) == 0:
-            print('Nenhuma animação encontrada.')
+            print_message('Nenhuma animação encontrada.')
             return
         for animation in animations:
-            print(f'        {count}) {animation}')
-        print('    ***************************************************************')
+            print_message(f'        {count}) {animation}')
+        print_message('    ***************************************************************')
         a = input(' => ')
         try:
             int(a)
         except ValueError:
-            print('Opção invalida. Escolha entre uma das opções acima.')
+            print_message('Opção invalida. Escolha entre uma das opções acima.')
             return
         a = int(a)
         if a > len(animations) or a < len(animations):
-            print('Opção invalida. Escolha entre uma das opções acima.')
+            print_message('Opção invalida. Escolha entre uma das opções acima.')
             return
         animation_content = open('animations/' + animations[a-1]).readlines()
         run_animation(animation_content)
