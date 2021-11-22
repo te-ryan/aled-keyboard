@@ -1,8 +1,3 @@
-# Comando para acender as led
-ON=xset led on
-
-# Comando para apagar as led
-OFF=xset led off
-
-# Mostrar LOG das teclas pressionadas
-LOG=FALSE
+on=xset led on
+off=xset led off
+log=false
