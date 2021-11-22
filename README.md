@@ -16,6 +16,12 @@ Dependendo do hardware do seu teclado, pode causar danos, como por exemplo, quei
 
 # Como instalar? ( GNU/Linux )
 
+## Clonando repositório com Git
+
+```sh
+git clone https://github.com/te-ryan/aled-keyboard/
+```
+
 ## Instalação da biblioteca [Xlib](https://pypi.org/project/xlib/)
 
 ```sh
